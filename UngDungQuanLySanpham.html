@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng quản lý sản phẩm</title>
+    <style>
+        .addNew input[type=text] {
+            border-radius: 5px;
+            border-color: aqua;
+        }
+        .addNew input[type=button]{
+            width: 65px; height: 35px;
+            background-color: #4c88ff;
+            border-radius: 7px;
+
+        }
+        .div1 {background-color: azure;
+            height: 100px;width: 400px;
+            align-content: center;
+            align-items: center;
+            border-radius: 7px;
+        }
+        .tableList {
+            border: 1px;
+            width: 900px;
+        }
+        .tableList tr:nth-child(odd){background-color: #f0f8ff;
+           alignment: left; height: 50px;
+        }
+        td button[type=button] { width: 65px; height: 35px;
+            background-color: #4c88ff;
+            border-radius: 7px; }
+
+    </style>
+</head>
+<body>
+<form><div class="div1">
+    <h2>Add New Product</h2>
+
+    <label class="addNew" for="inputProduct">
+    <input type="text" id="inputProduct" placeholder="New Product"  style="width: 300px;height: 30px"><input type="button" value="Add" onclick="addProduct()" style="color: azure" >
+    </label>
+    <h2>Display All Product</h2>
+
+    <p id="demo"></p>
+
+    <script>
+        let listProduct =[]; let i=0; let display =""; let j; let stt;
+        function addProduct() {
+
+            if (document.getElementById('inputProduct').value==""){alert("Name error!")}
+           else {listProduct[i] =document.getElementById('inputProduct').value;
+            i++;
+            document.getElementById('inputProduct').value ="";}
+            displayList();
+        }
+        function displayList() {
+
+            display+="<table class='tableList'>";
+            display+="<th>STT</th><th>Product Name</th><th></th><th><span style='color: red'>"+listProduct.length+" products</span></th>";
+            for (j=0; j <listProduct.length; j++){ stt= j +1;
+                display+="<tr><td class='list'width='50' align='center'>"+stt+"</td><td class='list'width='600' name='product'>" +listProduct[j]+ "</td>";
+                display+="<td class='list' align='center'>"+"<button type='button' value='"+j+"' onclick='editProduct(this.value)'><span style='color: aliceblue'>Edit</span></button> "+"</td>";
+                display+="<td class='list' align='center'>"+"<button type='button' value='"+j+"' onclick='delProduct(this.value)'><span style='color: aliceblue'>Delete</span></button> "+"</td>";
+                display+= "</tr>"
+            } display+="</table>";
+            document.getElementById('demo').innerHTML=display;
+            display="";
+            console.log(listProduct);
+
+        }
+        function editProduct(number) {
+            listProduct[number]= prompt('Nhập vào tên sản phẩm: ');
+            displayList()
+            console.log(listProduct);
+        }
+        function delProduct(number) {
+            listProduct.splice(number,1);
+            displayList()
+            console.log(listProduct);
+            i--;
+        }
+
+
+    </script>
+</div>
+</form>
+</body>
+</html>
