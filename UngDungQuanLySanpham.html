@@ -66,18 +66,16 @@
             } display+="</table>";
             document.getElementById('demo').innerHTML=display;
             display="";
-            console.log(listProduct);
-
         }
+
         function editProduct(number) {
             listProduct[number]= prompt('Nhập vào tên sản phẩm: ');
             displayList()
-            console.log(listProduct);
         }
+
         function delProduct(number) {
             listProduct.splice(number,1);
             displayList()
-            console.log(listProduct);
             i--;
         }
 
